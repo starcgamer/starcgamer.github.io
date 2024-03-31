@@ -1,0 +1,27 @@
+name: Update Site Links
+
+on:
+  push:
+    branches:
+      - main # Change this to your main branch name
+
+jobs:
+  update-links:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v2
+
+    - name: Update Links
+      run: |
+        find . -name '*.html' -type f -exec sed -i 's#href="/#href="/graphql/#g' {} +
+        find . -name '*.html' -type f -exec sed -i 's#src="/#src="/graphql/#g' {} +
+
+    - name: Commit Changes
+      run: |
+        git config --local user.email "fares.ashkar77@gmail.com"
+        git config --local user.name "Fares Alashkar"
+        git add .
+        git commit -m "Update links to include /graphql prefix"
+        git push
