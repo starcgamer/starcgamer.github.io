@@ -15,8 +15,15 @@ jobs:
 
     - name: Update Links
       run: |
+        # Update links in HTML files
         find . -name '*.html' -type f -exec sed -i 's#href="/#href="/graphql/#g' {} +
         find . -name '*.html' -type f -exec sed -i 's#src="/#src="/graphql/#g' {} +
+
+        # Update links in JavaScript files
+        find . -name '*.js' -type f -exec sed -i 's#"href": "/#"href": "/graphql/#g' {} +
+        find . -name '*.js' -type f -exec sed -i 's#"src": "/#"src": "/graphql/#g' {} +
+
+        
 
     - name: Commit Changes
       run: |
