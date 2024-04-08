@@ -23,7 +23,7 @@ function authenticateUser(username, password) {
         })
         .then(data => {
             localStorage.setItem('jwtToken', data);
-            window.location.reload()
+            window.location = '/';
         })
         .catch(error => {
             alert("Invalid credentials");
